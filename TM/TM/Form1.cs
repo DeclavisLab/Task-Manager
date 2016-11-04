@@ -30,29 +30,13 @@ namespace TM
 
         public void CheckData()
         {
-            if(!File.Exists(Path.Combine(Application.StartupPath,".tm")))
-            {
-                if(MessageBox.Show("Soll Ticket Manager Initalisiert werden?","",MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    Install();
-                }
-                else
-                {
-                    Application.Exit();                    
-                }
+            if(File.Exists(Path.Combine(Application.StartupPath,".tm"))) {            
+                Loading();                
             }
-            else
-            {
-                Loading();
-                InitBoard();
-            }
+            InitBoard();
         }
 
-        public void Install()
-        {
-         
-        }
-
+       
         public void InitBoard()
         {           
             listView1.Groups.Add(lvg_todo);
