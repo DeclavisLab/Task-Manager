@@ -34,7 +34,6 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.listView2 = new System.Windows.Forms.ListView();
-            this.button2 = new System.Windows.Forms.Button();
             this.listView3 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
@@ -85,16 +84,6 @@
             this.listView2.TabIndex = 3;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(204, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Ref";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // listView3
             // 
             this.listView3.LargeImageList = this.imageList1;
@@ -110,7 +99,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 761);
             this.Controls.Add(this.listView3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
@@ -127,7 +115,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListView listView3;
     }
 }
