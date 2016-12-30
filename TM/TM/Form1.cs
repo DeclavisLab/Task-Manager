@@ -229,5 +229,19 @@ namespace TM
             RefreshBoard();
 
         }
+
+        private void listView2_ItemActivate(object sender, EventArgs e)
+        {
+            new frm_edit().ChangeTicket(listView2.SelectedItems[0].Text, tickets);
+            RefreshBoard();
+
+        }
+
+        private void listView3_ItemActivate(object sender, EventArgs e)
+        {
+            new frm_edit().ChangeTicket(listView3.SelectedItems[0].Text, tickets);
+            RefreshBoard();
+
+        }
     }
 }

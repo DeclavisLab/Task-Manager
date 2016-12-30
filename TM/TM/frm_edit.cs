@@ -15,6 +15,7 @@ namespace TM
         string name;
         string assign;
         string des;
+        state oldstate;
 
 
         public frm_edit()
@@ -39,6 +40,7 @@ namespace TM
                 if(t.name == nam)
                 {
                     a = t;
+                    oldstate = a.mystate;
                     break;
                 }
             }
@@ -48,7 +50,7 @@ namespace TM
                 if  (dr == DialogResult.OK)
                 {
                     list.Items.Remove(a);
-                    list.Items.Add(new Ticket(name, des, state.Todo, assign));
+                    list.Items.Add(new Ticket(name, des, oldstate, assign));
                 }
                 if(dr == DialogResult.No)
                 {
@@ -80,7 +82,7 @@ namespace TM
             {                
                 name = txt_name.Text;
                 assign = txt_assign.Text;
-                des = txt_des.Text;
+                des = txt_des.Text;               
                 DialogResult = DialogResult.OK;
                 this.Close();
             }
