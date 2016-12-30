@@ -2,5 +2,5 @@
 Stand alone Ticket Manager for local project managment
 
 ## Download
-
-[GoogleDrive](http://bit.ly/dlab_tm) (x64)
+* [Latest release](https://github.com/DeclavisLab/Ticket-Manager/releases/latest)   
+* [v2.0_x64](https://github.com/DeclavisLab/Ticket-Manager/releases/tag/v2.0_x64)
