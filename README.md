@@ -3,4 +3,4 @@ Stand alone Ticket Manager for local project managment
 
 ## Download
 
-[GoogleDrive](http://bit.ly/dlab_tm)
+[GoogleDrive](http://bit.ly/dlab_tm) (x64)
