@@ -83,6 +83,7 @@
             this.listView2.Size = new System.Drawing.Size(250, 720);
             this.listView2.TabIndex = 3;
             this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.ItemActivate += new System.EventHandler(this.listView2_ItemActivate);
             // 
             // listView3
             // 
@@ -92,6 +93,7 @@
             this.listView3.Size = new System.Drawing.Size(250, 720);
             this.listView3.TabIndex = 5;
             this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listView3.ItemActivate += new System.EventHandler(this.listView3_ItemActivate);
             // 
             // Form1
             // 
