@@ -26,7 +26,7 @@ namespace TM
         {
             if(base.ShowDialog()==DialogResult.OK)
             {
-                return new Ticket(name, des, state.Todo, assign);
+                return new Ticket(name, des, state.Todo, assign, DateTime.Now);
             }
             else { return null; }            
         }
