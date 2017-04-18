@@ -14,15 +14,65 @@ namespace TM
 {
     public partial class Form1 : Form
     {
+        bool git_init = false;
+        public static Config conf = new Config();
+
         TicketList tickets = new TicketList();
         ListViewGroup lvg_todo = new ListViewGroup("Todo");
         ListViewGroup lvg_inprog = new ListViewGroup("In Progress");
         ListViewGroup lvg_closed = new ListViewGroup("Closed");
         public Form1()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            if (File.Exists(Path.Combine(Application.StartupPath,"c.tm"))) { CLoading(); } else { CSave(); CLoading(); }
+            StartupGit();
+
         }
 
+        void StartupGit()
+        {
+            if(!conf.git_e) { return; }
+            if (conf.gitpath != null || conf.gitpath != "") { git_init = true; }
+
+            if (git_init) { this.Text += " - Git enabled"; }
+        }
+
+        public void CSave()
+        {
+            StreamWriter sw = new StreamWriter(Path.Combine(Application.StartupPath, "c.tm"));
+            sw.Write(ToCXML(conf));
+            sw.Close();
+        }
+        void CLoading()
+        {
+            StreamReader sr = new StreamReader(File.OpenRead(Path.Combine(Application.StartupPath, "c.tm")));
+            string Read = sr.ReadToEnd().Replace(Environment.NewLine, String.Empty); ;
+            sr.Close();
+            conf = FromCXML(Read);
+        }
+
+        public static Config FromCXML(string xml)
+        {
+            try
+            {
+                using (StringReader stringReader = new StringReader(xml))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(Config));
+                    return (Config)serializer.Deserialize(stringReader);
+                }
+            }
+            catch (Exception e) { return new Config(); }
+        }
+        public string ToCXML(Config obj)
+        {
+            using (StringWriter stringWriter = new StringWriter(new StringBuilder()))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
+                xmlSerializer.Serialize(stringWriter, obj);
+                return stringWriter.ToString();
+            }
+        }
+        #region Board
         private void Form1_Load(object sender, EventArgs e)
         {
             CheckData();            
@@ -245,6 +295,16 @@ namespace TM
             new frm_edit().ChangeTicket(listView3.SelectedItems[0].Text, tickets);
             RefreshBoard();
 
+        }
+        #endregion
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if(new frm_config().ShowDialog()==DialogResult.OK)
+            {
+                CSave();
+            }
+            
         }
     }
 }

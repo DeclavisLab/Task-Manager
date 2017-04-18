@@ -95,11 +95,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_config.Designer.cs">
+      <DependentUpon>frm_config.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_edit.cs">
       <SubType>Form</SubType>
@@ -118,6 +125,9 @@
     <Compile Include="Ticket.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_config.resx">
+      <DependentUpon>frm_config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_edit.resx">
       <DependentUpon>frm_edit.cs</DependentUpon>
