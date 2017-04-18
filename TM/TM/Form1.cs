@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace TM
 {
@@ -35,6 +36,47 @@ namespace TM
             if (conf.gitpath != null || conf.gitpath != "") { git_init = true; }
 
             if (git_init) { this.Text += " - Git enabled"; }
+        }
+
+        void Git_Add_TM()
+        {
+            GitCommand("add .tm");
+            GitCommand("commit -m \"Updated the .TM File [TM]\"");
+        }
+
+        void GitCommand(string com)
+        {
+            if(!git_init) { return; }
+            ProcessStartInfo startInfo = new ProcessStartInfo(conf.gitpath);
+
+            startInfo.UseShellExecute = false;
+            startInfo.WorkingDirectory = Application.StartupPath;
+            startInfo.RedirectStandardInput = true;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.Arguments = com;
+
+            Process process = new Process();
+            process.StartInfo = startInfo;
+            process.Start();
+
+            /*List<string> output = new List<string>();
+            string lineVal = process.StandardOutput.ReadLine();
+
+            while (lineVal != null)
+            {
+
+                output.Add(lineVal);
+                lineVal = process.StandardOutput.ReadLine();
+
+            }*/
+
+            MessageBox.Show(process.StandardOutput.ReadToEnd());
+            MessageBox.Show(process.StandardError.ReadToEnd());
+
+            //int val = output.Count();
+
+            process.WaitForExit();
         }
 
         public void CSave()
@@ -213,15 +255,18 @@ namespace TM
 
         private void lvi1ItemDrag(object sender, ItemDragEventArgs e)
         {
-            base.DoDragDrop(listView1.SelectedItems[0], DragDropEffects.Move);            
+            base.DoDragDrop(listView1.SelectedItems[0], DragDropEffects.Move);
+            button3.Text = "*Git Update";
         }
         private void lvi2ItemDrag(object sender, ItemDragEventArgs e)
         {
             base.DoDragDrop(listView2.SelectedItems[0], DragDropEffects.Move);
+            button3.Text = "*Git Update";
         }
         private void lvi3ItemDrag(object sender, ItemDragEventArgs e)
         {
             base.DoDragDrop(listView3.SelectedItems[0], DragDropEffects.Move);
+            button3.Text = "*Git Update";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -238,7 +283,7 @@ namespace TM
         {
             StreamWriter sw = new StreamWriter(Path.Combine(Application.StartupPath, ".tm"));
             sw.Write(ToXML(tickets));
-            sw.Close();
+            sw.Close();                       
         }
         void Loading()
         {
@@ -305,6 +350,11 @@ namespace TM
                 CSave();
             }
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Git_Add_TM();
         }
     }
 }
