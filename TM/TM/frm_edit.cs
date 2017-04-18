@@ -16,6 +16,7 @@ namespace TM
         string assign;
         string des;
         state oldstate;
+        DateTime cr;
 
 
         public frm_edit()
@@ -23,12 +24,13 @@ namespace TM
             InitializeComponent();
         }
 
-        public DialogResult Open(string _name, string _ass, string _des)
+        public DialogResult Open(string _name, string _ass, string _des, DateTime _cr)
         {
             //base.ShowDialog();
             txt_name.Text = _name;
             txt_assign.Text = _ass;
             txt_des.Text = _des;
+            cr = _cr;
             return base.ShowDialog();
         }
 
@@ -46,11 +48,11 @@ namespace TM
             }
             if (a != null)
             {
-                DialogResult dr = Open(a.name, a.assign, a.description);
+                DialogResult dr = Open(a.name, a.assign, a.description, a.created);
                 if  (dr == DialogResult.OK)
                 {
                     list.Items.Remove(a);
-                    list.Items.Add(new Ticket(name, des, oldstate, assign));
+                    list.Items.Add(new Ticket(name, des, oldstate, assign, cr));
                 }
                 if(dr == DialogResult.No)
                 {

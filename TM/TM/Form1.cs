@@ -122,6 +122,7 @@ namespace TM
                 if (t.name == item.Text)
                 {
                     t.mystate = state.Todo;
+                    t.changenow();
                     RefreshBoard();
                     break;
                 }
@@ -137,6 +138,7 @@ namespace TM
                 if(t.name == item.Text)
                 {
                     t.mystate = state.Closed;
+                    t.changenow();
                     RefreshBoard();
                     break;
                 }
@@ -152,6 +154,7 @@ namespace TM
                 if (t.name == item.Text)
                 {
                     t.mystate = state.InProgress;
+                    t.changenow();
                     RefreshBoard();
                     break;
                 }

@@ -30,9 +30,10 @@ namespace TM
         [XmlElement("changed")]
         public DateTime changed { get; set; }
 
-        public Ticket(string _name, string _des, state _my, string _ass)
+        public Ticket(string _name, string _des, state _my, string _ass, DateTime cr)
         {
-            created = changed = DateTime.Now;
+            created = cr;
+            changed = DateTime.Now;
             name = _name;
             description = _des;
             mystate = _my;
@@ -40,6 +41,11 @@ namespace TM
         }
 
         public Ticket() { }
+
+        public void changenow()
+        {
+            changed = DateTime.Now;
+        }
     }
 
     [XmlRoot("TicketList")]
