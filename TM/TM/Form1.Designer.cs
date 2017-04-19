@@ -45,7 +45,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Create Ticket";
+            this.button1.Text = "Create Task";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -128,8 +128,9 @@
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
-            this.Text = "Ticket Manager";
+            this.Text = "Task Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

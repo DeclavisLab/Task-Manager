@@ -44,6 +44,13 @@ namespace TM
             GitCommand("commit -m \"Updated the .TM File [TM]\"");
         }
 
+        void Git_Add_All(string n)
+        {
+            return;
+            GitCommand("add --all");//?
+            GitCommand("commit -m \"Resolved Task "+n+" [TM]\"");
+        }
+
         void GitCommand(string com)
         {
             if(!git_init) { return; }
@@ -70,10 +77,17 @@ namespace TM
                 lineVal = process.StandardOutput.ReadLine();
 
             }*/
+            string msg = process.StandardOutput.ReadToEnd();
+            if(msg != "" || msg != null)
+            {
+                MessageBox.Show(msg);
+            }
 
-            MessageBox.Show(process.StandardOutput.ReadToEnd());
-            MessageBox.Show(process.StandardError.ReadToEnd());
-
+            msg = process.StandardError.ReadToEnd();
+            if (msg != "" || msg != null)
+            {
+                MessageBox.Show(msg);
+            }
             //int val = output.Count();
 
             process.WaitForExit();
@@ -232,6 +246,7 @@ namespace TM
                     t.mystate = state.Closed;
                     t.changenow();
                     RefreshBoard();
+                    Git_Add_All(t.name);
                     break;
                 }
             }            
