@@ -17,5 +17,8 @@ namespace TM
 
         [XmlElement]
         public bool git_e;
+
+        [XmlElement]
+        public string Version;
     }
 }

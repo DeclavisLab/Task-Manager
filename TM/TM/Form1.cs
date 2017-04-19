@@ -15,6 +15,7 @@ namespace TM
 {
     public partial class Form1 : Form
     {
+        const string Version = "v2.1 Beta";
         bool git_init = false;
         public static Config conf = new Config();
 
@@ -24,18 +25,27 @@ namespace TM
         ListViewGroup lvg_closed = new ListViewGroup("Closed");
         public Form1()
         {
+            SetVersion();
             InitializeComponent();
             if (File.Exists(Path.Combine(Application.StartupPath,"c.tm"))) { CLoading(); } else { CSave(); CLoading(); }
             StartupGit();
 
         }
 
+        void SetVersion()
+        {
+            conf.Version = Version;
+            tickets.Version = Version;
+        }
+
+        #region Git
+
         void StartupGit()
         {
-            if(!conf.git_e) { return; }
+            button3.Enabled = false;
+            if (!conf.git_e) { return; }
             if (conf.gitpath != null || conf.gitpath != "") { git_init = true; }
-
-            if (git_init) { this.Text += " - Git enabled"; }
+            if (git_init) { this.Text += " - Git enabled"; button3.Enabled = true; } 
         }
 
         void Git_Add_TM()
@@ -107,6 +117,22 @@ namespace TM
             conf = FromCXML(Read);
         }
 
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (new frm_config().ShowDialog() == DialogResult.OK)
+            {
+                CSave();
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Git_Add_TM();
+        }
+
+
+
         public static Config FromCXML(string xml)
         {
             try
@@ -128,6 +154,7 @@ namespace TM
                 return stringWriter.ToString();
             }
         }
+        #endregion
         #region Board
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -358,18 +385,6 @@ namespace TM
         }
         #endregion
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            if(new frm_config().ShowDialog()==DialogResult.OK)
-            {
-                CSave();
-            }
-            
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Git_Add_TM();
-        }
+       
     }
 }

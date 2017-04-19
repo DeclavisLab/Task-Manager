@@ -53,6 +53,9 @@ namespace TM
     {
         public TicketList() { Items = new List<Ticket>(); }
         [XmlElement("user")]
-        public List<Ticket> Items { get; set; }        
+        public List<Ticket> Items { get; set; }
+
+        [XmlElement]
+        public string Version;   
     }
 }
