@@ -41,11 +41,11 @@ namespace TM
         #region Git
 
         void StartupGit()
-        {
-            button3.Enabled = false;
+        {           
+            updateToolStripMenuItem.Enabled = false;
             if (!conf.git_e) { return; }
             if (conf.gitpath != null || conf.gitpath != "") { git_init = true; }
-            if (git_init) { this.Text += " - Git enabled"; button3.Enabled = true; } 
+            if (git_init) { this.Text += " - Git enabled"; updateToolStripMenuItem.Enabled = true; } 
         }
 
         void Git_Add_TM()
@@ -116,22 +116,6 @@ namespace TM
             sr.Close();
             conf = FromCXML(Read);
         }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            if (new frm_config().ShowDialog() == DialogResult.OK)
-            {
-                CSave();
-            }
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Git_Add_TM();
-        }
-
-
 
         public static Config FromCXML(string xml)
         {
@@ -298,28 +282,18 @@ namespace TM
         private void lvi1ItemDrag(object sender, ItemDragEventArgs e)
         {
             base.DoDragDrop(listView1.SelectedItems[0], DragDropEffects.Move);
-            button3.Text = "*Git Update";
+            updateToolStripMenuItem.Text = "*Git Update";
         }
         private void lvi2ItemDrag(object sender, ItemDragEventArgs e)
         {
             base.DoDragDrop(listView2.SelectedItems[0], DragDropEffects.Move);
-            button3.Text = "*Git Update";
+            updateToolStripMenuItem.Text = "*Git Update";
         }
         private void lvi3ItemDrag(object sender, ItemDragEventArgs e)
         {
             base.DoDragDrop(listView3.SelectedItems[0], DragDropEffects.Move);
-            button3.Text = "*Git Update";
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Ticket newt = new frm_add().NewTicket();
-            if (newt != null)
-            {
-                tickets.Items.Add(newt);
-                RefreshBoard();
-            }
-        }
+            updateToolStripMenuItem.Text = "*Git Update";
+        }      
 
         public void Save()
         {
@@ -383,8 +357,36 @@ namespace TM
             RefreshBoard();
 
         }
-        #endregion
 
-       
+        #endregion
+        #region Toolbar
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void configToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (new frm_config().ShowDialog() == DialogResult.OK)
+            {
+                CSave();
+            }
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ticket newt = new frm_add().NewTicket();
+            if (newt != null)
+            {
+                tickets.Items.Add(newt);
+                RefreshBoard();
+            }
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Git_Add_TM();
+        }
+        #endregion
     }
 }

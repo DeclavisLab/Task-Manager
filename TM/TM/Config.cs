@@ -20,5 +20,8 @@ namespace TM
 
         [XmlElement]
         public string Version;
+
+        [XmlElement]
+        public string MyName;
     }
 }

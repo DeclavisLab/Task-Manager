@@ -20,6 +20,8 @@ namespace TM
         public frm_add()
         {
             InitializeComponent();
+            if(Form1.conf.MyName == "" || Form1.conf.MyName == null) { Form1.conf.MyName = "me"; }
+            txt_assign.Text = "@" + Form1.conf.MyName;
         }
 
         public Ticket NewTicket()
