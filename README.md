@@ -1,5 +1,6 @@
-# Ticket-Manager
-Stand alone Ticket Manager for local project managment
+# Task-Manager
+(before Ticket-Manager)
+Stand alone Task Manager for local project managment
 
 ## Download
 * [Latest release](https://github.com/DeclavisLab/Ticket-Manager/releases/latest)   
